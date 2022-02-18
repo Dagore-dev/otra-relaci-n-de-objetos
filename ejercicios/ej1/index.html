@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script defer src="index.js"></script>
+  <title>Ejercicio 1</title>
+</head> 
+<body>
+  <h1>Ejercicio 1</h1>
+
+  <a href="/index.html">Volver</a>
+  
+  <p>
+    Refactoriza el siguiente código:
+    <pre><code>
+      &lt;script>
+        //Objeto 1
+        let objeto1=new Object();
+        objeto1.nombre="Pepe";
+        objeto1.apellidos="Fernández García";
+        objeto1.edad=39;
+        function edad1(persona){
+        persona.edad=persona.edad+1;
+        }
+        edad1(objeto1);
+        document.write(objeto1.nombre);
+        document.write(" ");
+        document.write(objeto1.apellidos);
+        document.write(" ");
+        document.write(objeto1.edad);
+        document.write(".&lt;/hr>&lt;/br>");
+        //Objeto 2
+        let objeto2={nombre:"Lucía", apellidos:"García Gomez", edad:42};
+        function edad2(persona){
+        persona.edad=persona.edad+1;
+        }
+        edad2(objeto2);
+        document.write(objeto2.nombre);
+        document.write(" ");
+        document.write(objeto2.apellidos);
+        document.write(" ");
+        document.write(objeto2.edad);
+        document.write(".&lt;/hr>");
+      &lt;/script>
+    </code></pre>
+  </p>
+  
+  <section>
+    
+    <h2>Solución</h2>
+
+    <figure>
+      <figcaption>Funciones que utilizamos para hacer el trabajo.</figcaption>
+      <pre><code>
+        function Person ( nombre, apellidos, edad ) {
+  
+          function agePlusOne () {
+            this.edad++;
+          }
+          
+          return { nombre, apellidos, edad , agePlusOne}
+        }
+        
+        function printPerson ( { nombre, apellidos, edad } ) {
+          const $P = document.createElement('p')
+          
+          $P.innerText = (`
+            ${nombre},
+            ${apellidos},
+            ${edad}
+          `)
+        
+          document.body.appendChild($P)
+        }
+      </code></pre>
+    </figure>
+
+  </section>
+
+  <section>
+
+    <h2>Aplicación</h2>
+
+    <figure>
+      
+      <figcaption>Hacemos el trabajo</figcaption>
+
+      <pre><code>
+        const person1 = Person('Pepe', 'Fernandez García', 39)
+        person1.agePlusOne()
+        printPerson(person1)
+
+        const person2 = Person('Lucía', 'García Gómez', 42)
+        person2.agePlusOne()
+        printPerson(person2)
+      </code></pre>
+
+    </figure>
+
+  </section>
+</body>
+</html>
