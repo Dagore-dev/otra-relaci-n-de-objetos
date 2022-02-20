@@ -1,21 +1,29 @@
 function Person ( nombre, apellidos, edad ) {
   
-  function agePlusOne () {
-    this.edad++;
+  let _age = edad
+
+  function getEdad() {
+    return _age
   }
-  
-  return { nombre, apellidos, edad , agePlusOne}
+  function agePlusOne () {
+    _age++
+  }
+
+  return {
+    nombre,
+    apellidos,
+    getEdad,
+    agePlusOne
+  }
 }
 
-function printPerson ( { nombre, apellidos, edad } ) {
+function printPerson ( { nombre, apellidos, getEdad } ) {
   const $P = document.createElement('p')
+  const $TEXT = document.createTextNode(
+    `${nombre} ${apellidos}, ${getEdad()} años.`
+  )
   
-  $P.innerText = (`
-    ${nombre},
-    ${apellidos},
-    ${edad}
-  `)
-
+  $P.appendChild($TEXT)
   document.body.appendChild($P)
 }
 
